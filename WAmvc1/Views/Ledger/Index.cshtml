@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WAmvc1.Models.Ledger>
+
+@{
+    ViewData["PageTitle"] = "Ledger";
+
+}
+<div class="container">
+    <form method="post">
+  <div class="row">
+ 
+        <div class="col order-1">
+            <ejs-datepicker id="date_begin" value=@ViewBag.Date_B name="date_begin" format="dd-MMM-yy"></ejs-datepicker>
+        </div>
+        <div class="col order-2">
+            <ejs-datepicker id="date_end" value=@ViewBag.Date_E name="date_end" format="dd-MMM-yy"></ejs-datepicker>
+        </div>
+        <div class="col order-3">
+            <div id="submitbutton">
+                <ejs-button id="submitButton" content="Submit"></ejs-button>
+            </div>
+        </div>
+
+  </div>
+    </form>
+</div>
+
+<div class="container">
+<div class="row">
+    <div class="col-md-18">
+        <ejs-grid id="idledgers" dataSource="@Model"
+                  allowSorting="false" allowPaging="false">
+            <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+            <e-grid-columns>
+                    <e-grid-column headerText="" field="Field1" textAlign="Center"> </e-grid-column>
+                <e-grid-column headerText="" field="Field2" textAlign="Right"> </e-grid-column>
+                <e-grid-column headerText="" field="Field3" textAlign="Right"> </e-grid-column>
+                <e-grid-column headerText="" field="Field4" textAlign="Right"> </e-grid-column>
+                </e-grid-columns>
+
+        </ejs-grid>
+    </div>
+
+</div>
+</div>

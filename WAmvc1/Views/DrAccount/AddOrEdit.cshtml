@@ -1,0 +1,48 @@
+﻿@model WAmvc1.Models.DrAccount
+
+
+@{
+    ViewData["PageTitle"] = Model.DrAccountId == 0 ? "Create a new Account" : "Edit Account";
+}
+
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="widget p-5" style="background-color:#212b36">
+            <form asp-action="AddOrEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="DrAccountId" value="@Model.DrAccountId" />
+                <div class="mb-3">
+                     <ejs-message id="msg_default" content="Please choose right type of Account"></ejs-message>
+                    <div class='e-btn-group custom-rbt-group'>
+                        <input type="radio" id="radio1" name="RevExpAccount" value="Expense" checked="@(Model.RevExpAccount=="Expense")" />
+                        <label class="e-btn" for="radio1">Expense</label>
+                        <input type="radio" id="radio2" name="RevExpAccount" value="No" checked="@(Model.RevExpAccount=="No")" />
+                        <label class="e-btn" for="radio2">No</label>
+                        <input type="radio" id="radio3" name="RevExpAccount" value="Revenue" checked="@(Model.RevExpAccount=="Revenue")" />
+                        <label class="e-btn" for="radio3">Revenue</label>
+                    </div>
+                    <span asp-validation-for="RevExpAccount" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <ejs-textbox id="title" placeholder="Title" ejs-for="Title" floatLabelType="Always"></ejs-textbox>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <ejs-button id="submit" content="Submit" cssClass="e-success"></ejs-button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+

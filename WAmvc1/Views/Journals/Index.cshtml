@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WAmvc1.Models.Journal>
+
+@{
+    ViewData["PageTitle"] = "Journals";
+    ViewData["PageActionText"] = "+New Journal";
+    ViewData["PageActionUrl"] = "/Journals/AddOrEdit";
+}
+
+<div class="container">
+<div class="row">
+    <div class="col-20">
+        <ejs-grid id="draccounts" dataSource="@Model"
+                  allowSorting="true" allowPaging="true" allowFiltering="true">
+            <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column headerText="Date" field="Date" format="dd-MMM-yy" textAlign="Center"> </e-grid-column>
+                <e-grid-column headerText="DrAccountName" field="DrAccountName" textAlign="Center"> </e-grid-column>
+                <e-grid-column headerText="CrAccountName" field="CrAccountName" textAlign="Center"> </e-grid-column>
+                <e-grid-column headerText="DrAmount" field="DrAmmount" format="c0" textAlign="Right" > </e-grid-column>
+                <e-grid-column headerText="CrAmount" field="CrAmmount" format="c0" textAlign="Right" > </e-grid-column>
+                <e-grid-column headerText="Actions" template="#actionColumnTemplate" width="100"> </e-grid-column>
+            </e-grid-columns>
+
+        </ejs-grid>
+    </div>
+    </div>
+</div>
+
+
+<script id="actionColumnTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        <a class="btn btn-sm no-a-decoration" href="/Journals/AddOrEdit/${JournalId}">
+            <i class="fa-solid fa-pen fa-lg"></i>
+        </a>
+        <form action="/Journals/Delete/${JournalId}" method="post">
+    @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+            onclick="return confirm(&quot;Are sure to delete this record?&quot;)">
+
+                <i class="fa-solid fa-trash-can fa-lg text-danger"></i>
+             </button>
+        </form>
+    </div>
+</script>
+
+
