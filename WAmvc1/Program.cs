@@ -15,6 +15,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 // I removed license
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("");
+//I added this comment
 
 var app = builder.Build();
 
