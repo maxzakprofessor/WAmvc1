@@ -51,30 +51,30 @@
     <div class="container ms-0">
         <div class="row justify-content-center">
             <div class="col-md-10">
-            <main role="main" class="pb-3">
-            <div class="col-md-7">
-                <div class="d-flex flex-column mb-5">
-                    <div class="d-flex mb-1">
-                        <div class="flex grow-1">
-                            <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
-                        </div>
-                        <div>
-                            @if (ViewData["PageActionText"] != null)
+                <main role="main" class="pb-3">
+                    <div class="col-md-7">
+                        <div class="d-flex flex-column mb-5">
+                            <div class="d-flex mb-1">
+                                <div class="flex grow-1">
+                                    <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
+                                </div>
+                                <div>
+                                    @if (ViewData["PageActionText"] != null)
                             {
-                                        <a class="btn btn-outline-success" href="@ViewData["PageActionUrl"]">
-                                    @ViewData["PageActionText"]
-                                </a>
+                                    <a class="btn btn-outline-success" href="@ViewData["PageActionUrl"]">
+                                        @ViewData["PageActionText"]
+                                    </a>
                             }
+                                </div>
+                            </div>
+                            <ejs-breadcrumb id="breadcrumb"
+                                            separatorTemplate="@Html.Raw("<span class='fa-solid fa-angle-right'></span>")"></ejs-breadcrumb>
                         </div>
-                    </div>
-                    <ejs-breadcrumb id="breadcrumb"
-                    separatorTemplate="@Html.Raw("<span class='fa-solid fa-angle-right'></span>")"></ejs-breadcrumb>
-                </div>
 
-        </div>
-            @RenderBody()
-        </main>
-    </div>
+                    </div>
+                    @RenderBody()
+                </main>
+            </div>
         </div>
     </div>
 
@@ -90,3 +90,28 @@
     <ejs-scripts></ejs-scripts>
 </body>
 </html>
+
+@*Этот файл — «макет» (Layout) вашего сайта. Это общий каркас (шапка, подвал и меню), внутри которого меняется только центральная часть с данными.
+    На пальцах:
+    1. «Гардероб» (Стили в <head>)
+    Здесь вы подключаете «внешний вид» сайта:
+    Bootstrap: Стандартный набор для того, чтобы кнопки и сетка были ровными.
+    Syncfusion (bootstrap5-dark): Тема оформления. Судя по названию, ваш сайт будет в темных тонах (dark mode) с красивыми профессиональными компонентами.
+    Font-Awesome: Набор иконок (те самые домики, карандаши и стрелочки).
+    Google Fonts (Inter): Современный и четкий шрифт.
+    2. «Навигатор» (Меню <nav>)
+    Это верхняя панель. Здесь прописаны ссылки на все ваши разделы:
+    Journal, Account, Ledger — это те самые кнопки, которые ведут на ваши контроллеры (Journals, DrAccount, Ledger).
+    _LoginPartial: Это «уголок пользователя». Если вы вошли — там будет ваше имя и кнопка «Выход», если нет — кнопки «Вход» и «Регистрация».
+    3. «Сменная площадка» (@RenderBody())
+    Это самое важное место в файле.
+    Представьте, что макет — это рама картины. Сама картина меняется (то список счетов, то форма добавления), но рама остается прежней. 
+    Именно сюда ASP.NET «вставляет» содержимое тех представлений (Views), которые возвращают ваши контроллеры.
+    4. Динамические заголовки
+    @ViewData["PageTitle"] и @ViewData["PageActionText"]:
+    Вы можете прямо из контроллера менять текст заголовка или кнопки. Например, на странице счетов кнопка будет называться «Добавить счет», а на другой странице её может не быть вовсе.
+    5. «Крошки» (ejs-breadcrumb)
+    Это навигационная цепочка вверху (например: Главная > Счета). Она помогает пользователю не заблудиться и быстро вернуться назад.
+    Итог «на пальцах»:
+    Этот код создает единый стиль для всего приложения. Вам не нужно копировать меню и футер на каждую страницу — вы пишете их один раз здесь, а всё остальное «подставляется» в центр.
+*@
